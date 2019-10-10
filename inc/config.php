@@ -1,11 +1,14 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "mini_siakad";
+
+//Get Heroku ClearDB connection information
+$cleardb_url      = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$cleardb_server   = $cleardb_url["host"];
+$cleardb_username = $cleardb_url["user"];
+$cleardb_password = $cleardb_url["pass"];
+$cleardb_db       = substr($cleardb_url["path"],1);
  
 // Create connection
-$mysqli = new mysqli($servername, $username, $password, $database);
+$mysqli = new mysqli($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
 
 //Menentukan timezone //
